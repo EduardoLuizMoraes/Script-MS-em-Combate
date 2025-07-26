@@ -1,0 +1,26 @@
+var velocidadeNormal = 2;
+var velocidadeCombate = 2;
+var emCombate = false;
+
+function tick(event) {
+    var npc = event.npc;
+    var target = npc.getAttackTarget();
+
+    if (target != null) {
+        if (!emCombate) {
+            emCombate = true;
+        }
+
+        // Persegue o alvo com velocidade de combate
+        var tx = target.getX();
+        var ty = target.getY();
+        var tz = target.getZ();
+        npc.navigateTo(tx, ty, tz, velocidadeCombate);
+    } else if (emCombate) {
+        // Saiu do combate
+        emCombate = false;
+        // Para o movimento e volta à velocidade normal
+        var pos = npc.getPosition();
+        npc.navigateTo(pos.getX(), pos.getY(), pos.getZ(), velocidadeNormal);
+    }
+}

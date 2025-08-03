@@ -1,5 +1,5 @@
-var velocidadeNormal = 2;
-var velocidadeCombate = 2;
+var velocidadeNormal = 3;
+var velocidadeCombate = 2.2;
 var emCombate = false;
 
 function tick(event) {
